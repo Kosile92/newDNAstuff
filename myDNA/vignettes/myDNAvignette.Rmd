@@ -1,0 +1,64 @@
+---
+title: "myDNAvignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{myDNAvignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# DNA FASTA sequences 
+### this package uses text file of nucleotides that can be given in a command line
+
+**using the myDNA package**
+
+* the read_nuc function is needed to compute reverse complement of simple DNA sequences
+
+  + can be used to generate primer complements
+  
+  + cannot be used to complement RNA sequences
+  
+  + can be used to get reverse complements of a nucleotide sequence string, e.g
+  "anthrax_sasp.nuc" type of file or any text file containing sequence strings
+
+```{r setup}
+library(myDNA)
+raw_data
+```
+
+
+* the "read_nuc" function of this myDNA package is written to split the character string of DNA sequences into single characters
+  + _NOTE_ : "read_nuc" function should be assigned to a variable name
+  
+```{r}
+fastdemo <- read_nuc(raw_data)
+fastdemo
+```
+
+* the "comp" function matches each nucleotide to a corresponding complement and returns the complement character.
+  + here the "comp" function is called on the output from the "read_nuc" function
+
+```{r}
+comp <- complement(fastdemo)
+comp
+```
+
+* each character string is printed back as a single string of characters using the "reverse" function in the myDNA package
+  + finally, the "reverse" function is called on the output of the "comp" function
+
+```{r}
+reverse <- reverse_comp(comp)
+reverse
+```
+
+* program to compute DNA sequence qualities
+
+* this program consist of functions that read the nucleotides in a DNA sequence
+
+* it can only work with DNA sequences, NO RNA###
